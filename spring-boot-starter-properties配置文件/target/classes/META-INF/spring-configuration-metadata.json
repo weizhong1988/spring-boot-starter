@@ -1,0 +1,27 @@
+{
+  "groups": [
+    {
+      "name": "com.weiz.resource",
+      "type": "com.weiz.pojo.Resource",
+      "sourceType": "com.weiz.pojo.Resource"
+    }
+  ],
+  "properties": [
+    {
+      "name": "com.weiz.resource.language",
+      "type": "java.lang.String",
+      "sourceType": "com.weiz.pojo.Resource"
+    },
+    {
+      "name": "com.weiz.resource.name",
+      "type": "java.lang.String",
+      "sourceType": "com.weiz.pojo.Resource"
+    },
+    {
+      "name": "com.weiz.resource.website",
+      "type": "java.lang.String",
+      "sourceType": "com.weiz.pojo.Resource"
+    }
+  ],
+  "hints": []
+}

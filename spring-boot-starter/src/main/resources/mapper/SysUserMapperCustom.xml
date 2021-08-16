@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+		<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.weiz.mapper.SysUserMapperCustom" >
+<!-- 查询简单的用户信息 -->
+	<select id="queryUserSimplyInfoById" resultType="com.weiz.pojo.SysUser"
+		parameterType="java.lang.String" >
+	    select
+	    	*
+	    from
+	    	sys_user
+	    where
+	    	id = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<resultMap id="UserMap" type="com.weiz.pojo.SysUser">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result property="username" column="username" jdbcType="VARCHAR" />
+		<!--封装映射company表数据，user表与company表1对1关系，配置1对1的映射
+            association:用于配置1对1的映射
+                        属性property：company对象在user对象中的属性名
+                        属性javaType：company属性的java对象 类型
+                        属性column：user表中的外键引用company表
+        -->
+		<association property="company" javaType="com.weiz.pojo.SysCompany" column="company_id">
+			<id property="id" jdbcType="VARCHAR" column="companyid"></id>
+			<result property="name" jdbcType="VARCHAR" column="companyname"></result>
+		</association>
+		<!--配置1对多关系映射
+            property：在user里面的List<Account>的属性名
+            ofType:当前account表的java类型
+            column:外键
+        -->
+	</resultMap>
+	<select id="queryAllUserListCustom" resultMap="UserMap"  >
+       SELECT
+       u.id,u.username,c.id companyid, c.name companyname
+       FROM sys_user u
+       LEFT JOIN sys_company c on u.company_id=c.id
+    </select>
+
+</mapper>
